@@ -1,5 +1,5 @@
 import tkinter as tk
-from backend import *
+from PasswordBackend import *
 
 def generatePassword():
   password = baseLetters()
