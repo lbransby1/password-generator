@@ -1,4 +1,4 @@
-on the seperate password generator, the .get(0 isn't functioning properly
+on the seperate password generator, the .get() isn't functioning properly
 
 .get() recieves nothing, and is therefore not able to change what happens to the password in the generatePassword() function
 
