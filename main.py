@@ -12,10 +12,8 @@ def generatePassword():
 
   print(password)
 
-
-
 root = tk.Tk()
-root.geometry('600x200')
+
 root.resizable(False, False)
 root.title('Password Generator and Validator')
 root.columnconfigure(0)
