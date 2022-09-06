@@ -26,7 +26,28 @@ def specialChar():
   return pw
 
 
+
+
+
 def passwordPage():
+  pw=tk.Tk()
+  pw.resizable(False, False)
+  pw.title('Password Generator and Validator')
+  pw.columnconfigure(0)
+  pw.rowconfigure(0)
+
+
+
+  numBool= ''
+  tk.Checkbutton(pw, text="Add numbers", onvalue="True", offvalue="False", variable= numBool).grid(column=0, row = 0)
+
+  capBool= ''
+  tk.Checkbutton(pw, text="Capitalize", onvalue="True", offvalue="False", variable= capBool).grid(column=1, row = 0)
+
+  charBool= ''
+  tk.Checkbutton(pw, text="special character", onvalue="True", offvalue="False", variable= charBool).grid(column=2, row = 0)
+
+  tk.Button(pw, text="Generate Password", command=lambda:generatePassword()).grid(column=0, row=1)
 
   def generatePassword():
     password = baseLetters()
@@ -37,34 +58,11 @@ def passwordPage():
     if charBool.get() == 'True':
       password += specialChar()
     print(password)
-  
+
   def printIfClicked():
     if numBool:
       print(numBool)
     
-
-  pw=tk.Tk()
-  pw.title('Password generator and validator')
-
-
-
-  pw.resizable(False, False)
-  pw.title('Password Generator and Validator')
-  pw.columnconfigure(0)
-  pw.rowconfigure(0)
-
-
-  numBool= tk.StringVar()
-  tk.Checkbutton(pw, text="Add numbers", onvalue="True", offvalue="False", variable= numBool).grid(column=0, row = 0)
-
-  capBool= tk.StringVar()
-  tk.Checkbutton(pw, text="Capitalize", onvalue="True", offvalue="False", variable= capBool).grid(column=1, row = 0)
-
-  charBool= tk.StringVar()
-  tk.Checkbutton(pw, text="special character", onvalue="True", offvalue="False", variable= charBool, command=printIfClicked).grid(column=2, row = 0)
-
-  tk.Button(pw, text="Generate Password", command=lambda:generatePassword()).grid(column=0, row=1)
-
 
   pw.mainloop()
 

@@ -1,10 +1,10 @@
 import tkinter as tk
+import tkinter.scrolledtext as st
 from password import * 
 
 def destroy():
   for widget in root.winfo_children():
     widget.destroy()
-
 
 
 # home 
@@ -24,6 +24,24 @@ def home(root):
 
 #new
 def new(root):
+
+  def returnData():
+    data= str(website.get()) + ' | '+ str(username.get())+ ' | '+ str(password.get())
+    with open("text.txt","a") as file:
+      file.write(data+ '\n')
+    clear(page)
+
+    print('password saved')
+
+  def clear(root):
+    for widget in root.winfo_children():
+        if not isinstance(widget, tk.Entry):
+            clear(widget)
+        elif isinstance(widget, tk.Entry):
+            widget.delete(0, tk.END)
+
+
+
   destroy()
   page = tk.Frame(root)
   page.grid()
@@ -45,6 +63,8 @@ def new(root):
 
 
   tk.Button(page, text = 'Back to home', command = lambda:home(root)).grid(row = 100)
+  tk.Button(page, text = 'Save', command = returnData).grid(row = 99)
+  tk.Button(page, text = 'Clear', command = lambda:clear(page)).grid(row = 99, column=1)
 
 #end of new
 
@@ -55,7 +75,20 @@ def view(root):
   page.grid()
   
   tk.Label(page, text = 'This is the page for viewing details').grid(row = 0)
+  text_area= st.ScrolledText(page).grid(row=1).insert(tk.INSERT,
+  """\
+  This is a scrolledtext widget to make tkinter text read only.
+  Hi
+  Geeks !!!
+  Geeks !!!
+  Geeks !!! 
+  Geeks !!!
+  Geeks !!!
+  Geeks !!!
+  Geeks !!!
+  """)
   
+  text_area.configure(state ='disabled')
   tk.Button(page, text = 'Back', command = lambda:home(root)).grid(row = 1)
 #end of view
 
